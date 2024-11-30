@@ -4,15 +4,12 @@ import com.test.purchase.model.Purchase;
 import com.test.purchase.repo.PurchaseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
 
     private final PurchaseRepo purchaseRepo;
-    private long countId;
 
     @Autowired
     public PurchaseServiceImpl(PurchaseRepo purchaseRepo) {

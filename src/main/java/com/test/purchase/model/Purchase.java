@@ -3,7 +3,7 @@ package com.test.purchase.model;
 import java.util.Objects;
 
 /**
- * Класс, представляющий товар (телефон) для корзины
+ * Класс, представляющий товар для списка товаров
  **/
 public class Purchase {
     private Long id;
@@ -12,6 +12,15 @@ public class Purchase {
     private double price;
 
     public Purchase() {}
+
+    /**
+     * Constructs a new Purchase with the specified details.
+     *
+     * @param id    уникальный ID товара
+     * @param name  название товара
+     * @param total количество товара
+     * @param price цена товара
+     */
     public Purchase(Long id, String name, int total, double price) {
         this.id = id;
         this.name = name;
@@ -23,6 +32,9 @@ public class Purchase {
         return id;
     }
     public void setId(long id) {
+        if(id < 0) {
+            throw new IllegalArgumentException("ID не может быть отрицательным");
+        }
         this.id = id;
     }
 
@@ -36,13 +48,34 @@ public class Purchase {
     public int getTotal() {
         return total;
     }
+
+    /**
+     * Устанавливает количество товара
+     *
+     * @param total - цена товара
+     * @throws IllegalArgumentException если количество отрицательно
+     */
+
     public void setTotal(int total) {
+        if(total < 0) {
+            throw new IllegalArgumentException("Количество товара не может быть отрицательным");
+        }
         this.total = total;
     }
     public double getPrice() {
         return price;
     }
+
+    /**
+     * Устанавливает цену на товар
+     *
+     * @param price - цена товара
+     * @throws IllegalArgumentException если цена отрицательна
+     */
     public void setPrice(double price) {
+        if(price < 0) {
+            throw new IllegalArgumentException("Цена не может быть отрицательной");
+        }
         this.price = price;
     }
 
@@ -52,6 +85,8 @@ public class Purchase {
                 id, name, total, price);
     }
 
+
+    // equals and hashcode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
