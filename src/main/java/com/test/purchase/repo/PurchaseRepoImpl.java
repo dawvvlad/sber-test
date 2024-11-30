@@ -55,10 +55,10 @@ public class PurchaseRepoImpl implements PurchaseRepo {
 
     /**
      * Обновление данных в {@link PurchaseStorage}
-     * @param id - id покупки, которую нужно обновить
-     * @param name - название
-     * @param total - количество
-     * @param price - цена
+     * @param id        id покупки, которую нужно обновить
+     * @param name      название
+     * @param total     количество
+     * @param price     цена
      **/
     @Override
     public Purchase update(Long id, String name, int total, double price) {

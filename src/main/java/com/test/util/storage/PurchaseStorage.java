@@ -18,24 +18,10 @@ import java.util.stream.Collectors;
 @Lazy
 public final class PurchaseStorage {
     private final Map<Long, Purchase> purchases = new HashMap<>();
-    private long countOfPurchases = 0;
     public PurchaseStorage() {}
-
-    private void incrementCountOfPurchases() {
-        countOfPurchases++;
-    }
-
-    private void decrementCountOfPurchases() {
-        countOfPurchases--;
-    }
-
-    public long getCountOfPurchases() {
-        return countOfPurchases;
-    }
 
     public void addPurchase(Purchase purchase) {
         purchases.put(purchase.getId(), purchase);
-        incrementCountOfPurchases();
     }
     public List<Purchase> getAllPurchases() {
         return new ArrayList<>(this.purchases.values());
@@ -59,7 +45,6 @@ public final class PurchaseStorage {
         boolean res = false;
         if(this.purchases.remove(id) != null) {
             res = true;
-            decrementCountOfPurchases();
         };
         return res;
     }

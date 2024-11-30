@@ -52,10 +52,9 @@ public class Purchase {
     /**
      * Устанавливает количество товара
      *
-     * @param total - цена товара
-     * @throws IllegalArgumentException если количество отрицательно
+     * @param total                         цена товара
+     * @throws IllegalArgumentException     если количество отрицательно
      */
-
     public void setTotal(int total) {
         if(total < 0) {
             throw new IllegalArgumentException("Количество товара не может быть отрицательным");
@@ -69,8 +68,8 @@ public class Purchase {
     /**
      * Устанавливает цену на товар
      *
-     * @param price - цена товара
-     * @throws IllegalArgumentException если цена отрицательна
+     * @param price                         цена товара
+     * @throws IllegalArgumentException     если цена отрицательна
      */
     public void setPrice(double price) {
         if(price < 0) {
@@ -81,7 +80,7 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return String.format("Purchase{id=%d, name='%s', total='%d', price=%.2f}",
+        return String.format("{ \n\tID: %d, \n\tНазвание: '%s', \n\tКоличество: '%d', \n\tЦена: %.2f\n}",
                 id, name, total, price);
     }
 

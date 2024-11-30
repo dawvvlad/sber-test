@@ -17,6 +17,6 @@ public final class AOP {
 
     @After("execution(* com.test.purchase.service.PurchaseService.save(..))")
     public void before(JoinPoint joinPoint) {
-        logger.info("[Method " + joinPoint.getSignature().getName() + " before: started]");
+        logger.info("[Метод " + joinPoint.getSignature().getName() + "]");
     }
 }
