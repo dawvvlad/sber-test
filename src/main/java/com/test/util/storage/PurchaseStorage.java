@@ -42,7 +42,10 @@ public final class PurchaseStorage {
     }
 
     public Purchase getPurchase(Long id) {
-        return this.purchases.get(id);
+        if(purchases.containsKey(id)) {
+            return purchases.get(id);
+        }
+        return null;
     }
 
     public List<Purchase> removePurchasesByName(String name) {
@@ -52,13 +55,13 @@ public final class PurchaseStorage {
                 .collect(Collectors.toList());
     }
 
-    public void removePurchase(Long id) {
-        this.purchases.remove(id);
-        decrementCountOfPurchases();
-    }
-
-    public void updatePurchase(Purchase purchase) {
-        this.purchases.put(purchase.getId(), purchase);
+    public boolean removePurchase(Long id) {
+        boolean res = false;
+        if(this.purchases.remove(id) != null) {
+            res = true;
+            decrementCountOfPurchases();
+        };
+        return res;
     }
 
 }

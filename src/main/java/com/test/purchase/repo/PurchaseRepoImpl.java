@@ -40,19 +40,22 @@ public class PurchaseRepoImpl implements PurchaseRepo {
     }
 
     @Override
-    public void delete(Long id) {
-        purchaseStorage.removePurchase(id);
+    public boolean delete(Long id) {
+        return purchaseStorage.removePurchase(id);
     }
 
     @Override
     public Purchase update(Long id, String name, int total, double price) {
         Purchase purchase = purchaseStorage.getPurchase(id);
-        purchase.setName(name);
-        purchase.setTotal(total);
-        purchase.setPrice(price);
-
-        purchaseStorage.updatePurchase(purchase);
-
+        if(purchase == null) {
+            purchase = new Purchase(id, name, total, price);
+            purchaseStorage.addPurchase(purchase);
+        } else {
+            purchase.setName(name);
+            purchase.setTotal(total);
+            purchase.setPrice(price);
+            purchaseStorage.addPurchase(purchase);
+        }
         return purchase;
     }
 }

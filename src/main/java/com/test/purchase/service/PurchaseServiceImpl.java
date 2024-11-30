@@ -12,6 +12,7 @@ import java.util.Optional;
 public class PurchaseServiceImpl implements PurchaseService {
 
     private final PurchaseRepo purchaseRepo;
+    private long countId;
 
     @Autowired
     public PurchaseServiceImpl(PurchaseRepo purchaseRepo) {
@@ -20,31 +21,31 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public List<Purchase> findAll() {
-        return List.of();
+        return purchaseRepo.findAll();
     }
 
     @Override
-    public Optional<Purchase> find(Long id) {
-        return Optional.empty();
+    public Purchase find(Long id) {
+        return purchaseRepo.find(id).orElse(null);
     }
 
     @Override
     public List<Purchase> findByName(String name) {
-        return List.of();
+        return purchaseRepo.findByName(name);
     }
 
     @Override
     public Purchase save(Purchase purchase) {
-        return null;
+        return purchaseRepo.save(purchase);
     }
 
     @Override
-    public void delete(Long id) {
-
+    public boolean delete(Long id) {
+        return purchaseRepo.delete(id);
     }
 
     @Override
-    public Purchase update(Long id) {
-        return null;
+    public Purchase update(Long id, String name, int total, double price) {
+        return purchaseRepo.update(id, name, total, price);
     }
 }

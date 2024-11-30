@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface PurchaseService {
     List<Purchase> findAll();
-    Optional<Purchase> find(Long id);
+    Purchase find(Long id);
     List<Purchase> findByName(String name);
     Purchase save(Purchase purchase);
-    void delete(Long id);
-    Purchase update(Long id);
+    boolean delete(Long id);
+    Purchase update(Long id, String name, int total, double price);
 }
