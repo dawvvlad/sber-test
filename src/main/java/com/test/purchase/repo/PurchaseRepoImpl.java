@@ -42,6 +42,7 @@ public class PurchaseRepoImpl implements PurchaseRepo {
     /**
      * Сохранение покупки в хранилище {@link PurchaseStorage}
      * @param purchase      данные о покупке, которые необходимо сохранить
+     * @return              покупка, сохраненная в хранилище
      */
     @Override
     public Purchase save(Purchase purchase) {

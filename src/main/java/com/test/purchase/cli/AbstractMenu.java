@@ -45,6 +45,11 @@ public abstract class AbstractMenu {
      **/
     protected abstract void handleChoice(int choice);
 
+
+    /**
+     * Реализует действие через ввод в командной строке
+     * @return      Введенное целое число, соответствующее списку действий
+     */
     protected int getChoice() {
         System.out.print("Ваш выбор: ");
         while (!scanner.hasNextInt()) {
