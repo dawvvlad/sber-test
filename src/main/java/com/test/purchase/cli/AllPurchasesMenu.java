@@ -49,6 +49,7 @@ public class AllPurchasesMenu extends AbstractMenu {
             }
         }
         if(choice == 0) {
+            found = true;
             appRunner.goBack();
         }
         if (!found) {

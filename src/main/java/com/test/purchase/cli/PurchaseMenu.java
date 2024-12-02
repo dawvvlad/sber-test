@@ -49,6 +49,7 @@ public class PurchaseMenu extends AbstractMenu {
     protected void handleChoice(int choice) {
         switch (choice) {
             case 1 -> {
+                scanner.nextLine();
                 Purchase purchase = readPurchaseInput();
                 purchaseService.update(id, purchase.getName(), purchase.getTotal(), purchase.getPrice());
             }
