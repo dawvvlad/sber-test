@@ -16,13 +16,11 @@ public class Purchase {
     /**
      * Constructs a new Purchase with the specified details.
      *
-     * @param id    уникальный ID товара
      * @param name  название товара
      * @param total количество товара
      * @param price цена товара
      */
-    public Purchase(Long id, String name, int total, double price) {
-        this.id = id;
+    public Purchase(String name, int total, double price) {
         this.name = name;
         this.total = total;
         this.price = price;
@@ -80,7 +78,7 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return String.format("{ \n\tID: %d, \n\tНазвание: '%s', \n\tКоличество: '%d', \n\tЦена: %.2f\n}",
+        return String.format("{ \n\tID: %d, \n\tНазвание: '%s', \n\tКоличество: %d, \n\tЦена: %.2f\n}",
                 id, name, total, price);
     }
 

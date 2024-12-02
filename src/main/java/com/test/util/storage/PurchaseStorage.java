@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @Lazy
 public final class PurchaseStorage {
     private final Map<Long, Purchase> purchases = new HashMap<>();
+
     public PurchaseStorage() {}
 
     public void addPurchase(Purchase purchase) {

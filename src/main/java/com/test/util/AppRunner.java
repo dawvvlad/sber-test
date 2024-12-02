@@ -1,7 +1,8 @@
 package com.test.util;
 
-import com.test.cli.AbstractMenu;
-import com.test.cli.MainMenu;
+import com.test.util.cli.AbstractMenu;
+import com.test.util.cli.MainMenu;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -12,17 +13,21 @@ import java.util.*;
  * Используется стек вызовов menuStack
  **/
 @Component
-@Lazy
 public class AppRunner {
-
     // Стек вызовов
     private final Deque<AbstractMenu> menuStack = new ArrayDeque<>();
-    private volatile boolean running = false;
+    MainMenu mainMenu;
+
+    @Autowired
+    public AppRunner(@Lazy MainMenu mainMenu) {
+        this.mainMenu = mainMenu;
+    }
+
+
 
     public void run() {
-        running = !menuStack.isEmpty();
-        menuStack.push(new MainMenu(this));
-        while(running){
+        menuStack.push(mainMenu);
+        while(!menuStack.isEmpty()){
             AbstractMenu currentMenu = menuStack.peek();
             if(currentMenu != null){
                 currentMenu.display();
@@ -39,6 +44,6 @@ public class AppRunner {
     }
 
     public void stop() {
-        running = false;
+        this.menuStack.clear();
     }
 }

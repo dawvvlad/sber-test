@@ -64,7 +64,7 @@ public class PurchaseRepoImpl implements PurchaseRepo {
     public Purchase update(Long id, String name, int total, double price) {
         Purchase purchase = purchaseStorage.getPurchase(id);
         if(purchase == null) {
-            purchase = new Purchase(id, name, total, price);
+            purchase = new Purchase(name, total, price);
             purchaseStorage.addPurchase(purchase);
         } else {
             purchase.setName(name);
