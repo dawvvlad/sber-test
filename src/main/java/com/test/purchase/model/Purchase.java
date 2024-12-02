@@ -1,10 +1,14 @@
 package com.test.purchase.model;
 
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 
 /**
  * Класс, представляющий товар для списка товаров
  **/
+
 public class Purchase {
     private Long id;
     private String name;

@@ -1,4 +1,4 @@
-package com.test.util.cli;
+package com.test.purchase.cli;
 
 import com.test.purchase.model.Purchase;
 import com.test.purchase.service.PurchaseService;

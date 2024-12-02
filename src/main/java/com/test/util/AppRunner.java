@@ -1,7 +1,7 @@
 package com.test.util;
 
-import com.test.util.cli.AbstractMenu;
-import com.test.util.cli.MainMenu;
+import com.test.purchase.cli.AbstractMenu;
+import com.test.purchase.cli.MainMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

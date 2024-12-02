@@ -1,4 +1,4 @@
-package com.test.util.cli;
+package com.test.purchase.cli;
 
 import com.test.util.AppRunner;
 import org.springframework.beans.factory.annotation.Autowired;
