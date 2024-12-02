@@ -1,5 +1,5 @@
 package com.test;
-import com.test.util.config.Config;
+import com.test.purchase.config.Config;
 import com.test.util.AppRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

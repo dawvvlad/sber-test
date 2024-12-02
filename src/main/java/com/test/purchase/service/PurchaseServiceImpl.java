@@ -1,35 +1,48 @@
 package com.test.purchase.service;
 
 import com.test.purchase.model.Purchase;
+import com.test.purchase.repo.PurchaseRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
-    @Override
-    public List<Purchase> findAll() {
-        return List.of();
+
+    private final PurchaseRepo purchaseRepo;
+
+    @Autowired
+    public PurchaseServiceImpl(PurchaseRepo purchaseRepo) {
+        this.purchaseRepo = purchaseRepo;
     }
 
     @Override
-    public Optional<Purchase> find(Long id) {
-        return Optional.empty();
+    public List<Purchase> findAll() {
+        return purchaseRepo.findAll();
+    }
+
+    @Override
+    public Purchase find(Long id) {
+        return purchaseRepo.find(id).orElse(null);
+    }
+
+    @Override
+    public List<Purchase> findByName(String name) {
+        return purchaseRepo.findByName(name);
     }
 
     @Override
     public Purchase save(Purchase purchase) {
-        return null;
+        return purchaseRepo.save(purchase);
     }
 
     @Override
-    public void delete(Long id) {
-
+    public boolean delete(Long id) {
+        return purchaseRepo.delete(id);
     }
 
     @Override
-    public Purchase update(Long id) {
-        return null;
+    public Purchase update(Long id, String name, int total, double price) {
+        return purchaseRepo.update(id, name, total, price);
     }
 }

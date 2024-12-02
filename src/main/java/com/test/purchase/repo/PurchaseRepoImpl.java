@@ -4,14 +4,19 @@ import com.test.purchase.model.Purchase;
 import com.test.util.storage.PurchaseStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * Реализация репозитория для работы с данными.
+ * В качестве хранилища (базы данных) выступает {@link PurchaseStorage}
+ **/
 @Repository
 public class PurchaseRepoImpl implements PurchaseRepo {
 
     private final PurchaseStorage purchaseStorage;
+    private final AtomicLong countId = new AtomicLong(0);
 
     @Autowired
     public PurchaseRepoImpl(PurchaseStorage purchaseStorage) {
@@ -33,26 +38,45 @@ public class PurchaseRepoImpl implements PurchaseRepo {
         return purchaseStorage.removePurchasesByName(name);
     }
 
+
+    /**
+     * Сохранение покупки в хранилище {@link PurchaseStorage}
+     * @param purchase      данные о покупке, которые необходимо сохранить
+     * @return              покупка, сохраненная в хранилище
+     */
     @Override
     public Purchase save(Purchase purchase) {
+
+        // Инкрементируется счетчик ID и добавляется в хранилище
+        purchase.setId(countId.incrementAndGet());
         purchaseStorage.addPurchase(purchase);
         return purchase;
     }
 
     @Override
-    public void delete(Long id) {
-        purchaseStorage.removePurchase(id);
+    public boolean delete(Long id) {
+        return purchaseStorage.removePurchase(id);
     }
 
+    /**
+     * Обновление данных в {@link PurchaseStorage}
+     * @param id        id покупки, которую нужно обновить
+     * @param name      название
+     * @param total     количество
+     * @param price     цена
+     **/
     @Override
     public Purchase update(Long id, String name, int total, double price) {
         Purchase purchase = purchaseStorage.getPurchase(id);
-        purchase.setName(name);
-        purchase.setTotal(total);
-        purchase.setPrice(price);
-
-        purchaseStorage.updatePurchase(purchase);
-
+        if(purchase == null) {
+            purchase = new Purchase(name, total, price);
+            purchaseStorage.addPurchase(purchase);
+        } else {
+            purchase.setName(name);
+            purchase.setTotal(total);
+            purchase.setPrice(price);
+            purchaseStorage.addPurchase(purchase);
+        }
         return purchase;
     }
 }

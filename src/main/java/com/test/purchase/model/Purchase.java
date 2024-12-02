@@ -1,10 +1,14 @@
 package com.test.purchase.model;
 
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 
 /**
- * Класс, представляющий товар (телефон) для корзины
+ * Класс, представляющий товар для списка товаров
  **/
+
 public class Purchase {
     private Long id;
     private String name;
@@ -12,8 +16,15 @@ public class Purchase {
     private double price;
 
     public Purchase() {}
-    public Purchase(Long id, String name, int total, double price) {
-        this.id = id;
+
+    /**
+     * Constructs a new Purchase with the specified details.
+     *
+     * @param name  название товара
+     * @param total количество товара
+     * @param price цена товара
+     */
+    public Purchase(String name, int total, double price) {
         this.name = name;
         this.total = total;
         this.price = price;
@@ -23,6 +34,9 @@ public class Purchase {
         return id;
     }
     public void setId(long id) {
+        if(id < 0) {
+            throw new IllegalArgumentException("ID не может быть отрицательным");
+        }
         this.id = id;
     }
 
@@ -36,22 +50,44 @@ public class Purchase {
     public int getTotal() {
         return total;
     }
+
+    /**
+     * Устанавливает количество товара
+     *
+     * @param total                         цена товара
+     * @throws IllegalArgumentException     если количество отрицательно
+     */
     public void setTotal(int total) {
+        if(total < 0) {
+            throw new IllegalArgumentException("Количество товара не может быть отрицательным");
+        }
         this.total = total;
     }
     public double getPrice() {
         return price;
     }
+
+    /**
+     * Устанавливает цену на товар
+     *
+     * @param price                         цена товара
+     * @throws IllegalArgumentException     если цена отрицательна
+     */
     public void setPrice(double price) {
+        if(price < 0) {
+            throw new IllegalArgumentException("Цена не может быть отрицательной");
+        }
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return String.format("Purchase{id=%d, name='%s', total='%d', price=%.2f}",
+        return String.format("{ \n\tID: %d, \n\tНазвание: '%s', \n\tКоличество: %d, \n\tЦена: %.2f\n}",
                 id, name, total, price);
     }
 
+
+    // equals and hashcode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

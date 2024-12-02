@@ -1,4 +1,4 @@
-package com.test.util.config;
+package com.test.purchase.config;
 import com.test.purchase.aop.AOP;
 import org.springframework.context.annotation.*;
 
