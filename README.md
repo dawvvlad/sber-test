@@ -14,4 +14,4 @@
 
 - В [purchases](src/main/java/com/test/purchase) расположена основная логика работы с данными, а также реализация CLI
 - В [util](src/main/java/com/test/util) расположена вспомогательная логика, например, реализация имитации хранилища данных
-- Тесты расположены в [test] (src/test/java/com/test)
+- Тесты расположены в [test](src/test/java/com/test)
