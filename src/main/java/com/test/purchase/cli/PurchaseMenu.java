@@ -26,7 +26,6 @@ public class PurchaseMenu extends AbstractMenu {
             return;
         }
 
-        // Получаем покупку по ID
         Purchase purchase = purchaseService.find(id);
         if (purchase == null) {
             System.out.println("Ошибка: Покупка с ID " + id + " не найдена.");
@@ -47,7 +46,9 @@ public class PurchaseMenu extends AbstractMenu {
     protected void handleChoice(int choice) {
         switch (choice) {
             case 1 -> {
-                appRunner.goBack();
+                Purchase purchase = purchaseService.find(id);
+                purchase = readPurchaseInput();
+                purchaseService.update(id, purchase.getName(), purchase.getTotal(), purchase.getPrice());
             }
             case 2 -> {
                 purchaseService.delete(id);

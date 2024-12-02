@@ -29,20 +29,7 @@ public class CreatePurchaseMenu extends AbstractMenu {
 
     @Override
     protected void handleChoice(int choice) {
-        String name;
-        int total;
-        double price;
-
-        System.out.println("Введите название товара:");
-        name = scanner.next();
-
-        System.out.println("Введите количество товара:");
-        total = scanner.nextInt();
-
-        System.out.println("Введите цену товара:");
-        price = scanner.nextDouble();
-
-        Purchase purchase = new Purchase(name, total, price);
+        Purchase purchase = readPurchaseInput();
         Purchase savedPurchase = purchaseService.save(purchase);
 
         if(savedPurchase != null) {

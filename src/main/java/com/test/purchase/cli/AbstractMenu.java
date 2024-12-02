@@ -1,5 +1,6 @@
 package com.test.purchase.cli;
 
+import com.test.purchase.model.Purchase;
 import com.test.util.AppRunner;
 
 import java.util.Scanner;
@@ -34,5 +35,18 @@ public abstract class AbstractMenu {
             scanner.next();
         }
         return scanner.nextInt();
+    }
+
+    protected Purchase readPurchaseInput() {
+        System.out.println("Введите название товара:");
+        String name = scanner.next();
+
+        System.out.println("Введите количество товара:");
+        int total = scanner.nextInt();
+
+        System.out.println("Введите цену товара:");
+        double price = scanner.nextDouble();
+
+        return new Purchase(name, total, price);
     }
 }
