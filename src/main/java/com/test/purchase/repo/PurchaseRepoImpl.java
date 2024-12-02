@@ -4,17 +4,14 @@ import com.test.purchase.model.Purchase;
 import com.test.util.storage.PurchaseStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-
 /**
- * Реализация репозитория для работы с данными
+ * Реализация репозитория для работы с данными.
  * В качестве хранилища (базы данных) выступает {@link PurchaseStorage}
  **/
-
 @Repository
 public class PurchaseRepoImpl implements PurchaseRepo {
 
@@ -41,8 +38,15 @@ public class PurchaseRepoImpl implements PurchaseRepo {
         return purchaseStorage.removePurchasesByName(name);
     }
 
+
+    /**
+     * Сохранение покупки в хранилище {@link PurchaseStorage}
+     * @param purchase      данные о покупке, которые необходимо сохранить
+     */
     @Override
     public Purchase save(Purchase purchase) {
+
+        // Инкрементируется счетчик ID и добавляется в хранилище
         purchase.setId(countId.incrementAndGet());
         purchaseStorage.addPurchase(purchase);
         return purchase;

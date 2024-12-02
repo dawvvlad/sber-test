@@ -4,8 +4,11 @@ import com.test.purchase.service.PurchaseService;
 import com.test.util.AppRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
+
+/**
+ * Меню отображения всех существующих покупок
+ **/
 
 @Component
 public class AllPurchasesMenu extends AbstractMenu {
@@ -36,7 +39,7 @@ public class AllPurchasesMenu extends AbstractMenu {
 
     @Override
     protected void handleChoice(int choice) {
-        boolean found = false;
+        boolean found = false; // нахождение верного ответа
         for (Purchase e : purchases) {
             if (choice == e.getId()) {
                 purchaseMenu.setId(e.getId());

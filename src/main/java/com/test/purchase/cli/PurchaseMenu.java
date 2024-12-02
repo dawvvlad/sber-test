@@ -5,6 +5,9 @@ import com.test.purchase.service.PurchaseService;
 import com.test.util.AppRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * Класс для отображения всех покупок
+ **/
 @Component
 public class PurchaseMenu extends AbstractMenu {
     private Long id;
@@ -26,15 +29,15 @@ public class PurchaseMenu extends AbstractMenu {
             return;
         }
 
+        // Находит покупку по ID
         Purchase purchase = purchaseService.find(id);
         if (purchase == null) {
             System.out.println("Ошибка: Покупка с ID " + id + " не найдена.");
             System.out.println("0. Назад");
             return;
         }
-
         System.out.println("Информация о покупке:");
-        System.out.println(purchase); // Выводим полную информацию о покупке
+        System.out.println(purchase); // Выводит полную информацию о покупке
 
         System.out.println("\nВыберите действие:");
         System.out.println("1. Редактировать покупку");
@@ -46,8 +49,7 @@ public class PurchaseMenu extends AbstractMenu {
     protected void handleChoice(int choice) {
         switch (choice) {
             case 1 -> {
-                Purchase purchase = purchaseService.find(id);
-                purchase = readPurchaseInput();
+                Purchase purchase = readPurchaseInput();
                 purchaseService.update(id, purchase.getName(), purchase.getTotal(), purchase.getPrice());
             }
             case 2 -> {

@@ -4,6 +4,18 @@ import com.test.util.AppRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Главное меню приложения с элементами приложения.
+ * <ul>
+ *     <li>
+ *          {@link #allPurchasesMenu}   -   ссылка на меню просмотра всех покупок
+ *     </li>
+ *     <li>
+ *          {@link #createPurchaseMenu}   -   ссылка на меню создания покупки
+ *     </li>
+ * </ul>
+ */
+
 @Component
 public class MainMenu extends AbstractMenu {
     private final AllPurchasesMenu allPurchasesMenu;

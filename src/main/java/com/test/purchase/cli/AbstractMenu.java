@@ -2,9 +2,13 @@ package com.test.purchase.cli;
 
 import com.test.purchase.model.Purchase;
 import com.test.util.AppRunner;
-
 import java.util.Scanner;
 
+/**
+ * Абстрактный класс меню CLI,
+ * содержит абстрактные методы для реализации в каждом меню;
+ * содержит реализованные общие методы для каждого меню.
+ **/
 public abstract class AbstractMenu {
     protected String name;
     protected AppRunner appRunner;
@@ -15,6 +19,15 @@ public abstract class AbstractMenu {
         this.name = name;
     }
 
+    /**
+     * Выводит на экран основную информацию, а также элементы управления
+     <ul>
+     *     <li>{@link #showHeader()} - выводит заголовок меню.</li>
+     *     <li>{@link #showOptions()} - отображает доступные опции меню.</li>
+     *     <li>{@link #getChoice()} - получает выбор пользователя.</li>
+     *     <li>{@link #handleChoice(int)} - обрабатывает выбор пользователя.</li>
+     * </ul>
+     */
     public void display() {
         showHeader();
         showOptions();
@@ -26,6 +39,10 @@ public abstract class AbstractMenu {
     }
 
     protected abstract void showOptions();
+
+    /**
+     * Абстрактный метод для управления приложением
+     **/
     protected abstract void handleChoice(int choice);
 
     protected int getChoice() {

@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 /**
  * Класс, имитирующий базу данных/хранилище
  **/
-
 @Component
 @Lazy
 public final class PurchaseStorage {
@@ -43,11 +42,7 @@ public final class PurchaseStorage {
     }
 
     public boolean removePurchase(Long id) {
-        boolean res = false;
-        if(this.purchases.remove(id) != null) {
-            res = true;
-        };
-        return res;
+        return this.purchases.remove(id) != null;
     }
 
 }
